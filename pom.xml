@@ -22,6 +22,8 @@
         <kotlin.version>1.1.51</kotlin.version>
         <!-- Incremental Compilation -->
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <!-- Vertx Version -->
+        <vertx.version>3.4.2</vertx.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,9 +42,37 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-config</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
+            <!-- Vertx -->
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-config</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-core</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
             <!-- Kotlin Library -->
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
