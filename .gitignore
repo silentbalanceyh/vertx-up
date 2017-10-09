@@ -122,6 +122,10 @@ DerivedData/
 .idea/**/gradle.xml
 .idea/**/libraries
 
+# Ceylong
+.ceylon
+modules
+
 # CMake
 cmake-build-debug/
 

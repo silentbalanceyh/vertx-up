@@ -17,4 +17,8 @@ object Error {
     fun up(clazz: Class<Any>, exp: VertxUpException) {
 
     }
+
+    fun error(clazz: Class<Any>, code: Int, vararg params: Any) {
+        
+    }
 }
