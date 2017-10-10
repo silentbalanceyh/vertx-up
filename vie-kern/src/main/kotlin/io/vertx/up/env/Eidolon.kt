@@ -3,6 +3,7 @@ package io.vertx.up.env
 import io.vertx.up.ce.Key
 import io.vertx.up.ce.Path
 import io.vertx.up.ce.PropertyPath
+import io.vertx.up.cv.Un
 import io.vertx.up.hors.MissingKeyException
 import java.io.File
 import java.io.InputStream
@@ -59,7 +60,7 @@ class DataMap(
  * Environment Variable Storage
  */
 class DataEnvironment(
-        val prefix: String = "",
+        val prefix: String = Un.EMPTY,
         private val lookup: (String) -> String? = System::getenv,
         private val all: () -> Map<String, String> = System::getenv
 ) : Datum {
@@ -77,7 +78,7 @@ class DataEnvironment(
             listOf(path to all().filterKeys { it.startsWith(prefix) })
 
     private fun toEnvUnit(name: String) =
-            prefix + name.toUpperCase().replace("[^A-Za-z0-9]", "_")
+            prefix + name.toUpperCase().replace("[^A-Za-z0-9]", Un.UNDERLINE)
 
     companion object : Datum by DataEnvironment
 }
@@ -158,7 +159,7 @@ class DataChild(
         private val datum: Datum
 ) : Datum {
 
-    private val prefix = namePrefix + "."
+    private val prefix = namePrefix + Un.DOT
 
     override fun <T> getOrNull(key: Key<T>) = datum.getOrNull(prefixed(key))
 
