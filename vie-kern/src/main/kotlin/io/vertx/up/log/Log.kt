@@ -2,7 +2,7 @@ package io.vertx.up.log
 
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.LoggerFactory
-import io.vertx.up.cv.Constants
+import io.vertx.up.cv.Log
 import io.vertx.up.hors.VertxUpException
 import java.text.MessageFormat
 
@@ -74,7 +74,7 @@ object Error {
 
     fun vm(clazz: Class<Any>, exp: Throwable) {
         val logger = Annal.get(clazz)
-        logger.error(MessageFormat.format(Constants.Log.MSG_VM, exp.message))
+        logger.error(MessageFormat.format(Log.MSG_VM, exp.message))
     }
 
     fun up(clazz: Class<Any>, exp: VertxUpException) {
