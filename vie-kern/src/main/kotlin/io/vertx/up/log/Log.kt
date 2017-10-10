@@ -2,10 +2,12 @@ package io.vertx.up.log
 
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.LoggerFactory
+import io.vertx.up.cv.Constants
+import io.vertx.up.hors.VertxUpException
 import java.text.MessageFormat
 
 /**
- * Sample Logger
+ * Uniform logging interfaces.
  */
 object Annal {
 
@@ -59,5 +61,27 @@ object Annal {
         if (enabled()) {
             this.execute(log, pattern, args)
         }
+    }
+}
+
+/**
+ * Common error output for three categories
+ * 1. JVM error
+ * 2. Container error
+ * 3. System error message generation
+ */
+object Error {
+
+    fun vm(clazz: Class<Any>, exp: Throwable) {
+        val logger = Annal.get(clazz)
+        logger.error(MessageFormat.format(Constants.Log.MSG_VM, exp.message))
+    }
+
+    fun up(clazz: Class<Any>, exp: VertxUpException) {
+
+    }
+
+    fun error(clazz: Class<Any>, code: Int, vararg params: Any) {
+
     }
 }

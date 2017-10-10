@@ -126,22 +126,6 @@
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <!-- Plugin -->
         <plugins>
-            <!-- Ceylon -->
-            <plugin>
-                <groupId>org.ceylon-lang</groupId>
-                <artifactId>ceylon-maven-plugin</artifactId>
-                <version>${ceylon.version}</version>
-                <configuration>
-                    <!--
-                     This is required if you intend to have Java modules that depend
-                     on this Ceylon module, or if you want to publish your Ceylon module
-                     using Maven.
-                    -->
-                    <explode>true</explode>
-                </configuration>
-                <!-- This plugs the Ceylon plugin into the compile, compileTest, test phases -->
-                <extensions>true</extensions>
-            </plugin>
             <!-- Kotlin -->
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
