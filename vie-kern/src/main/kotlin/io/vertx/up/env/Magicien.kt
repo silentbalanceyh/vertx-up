@@ -2,6 +2,7 @@ package io.vertx.up.env
 
 import io.vertx.up.ce.Key
 import io.vertx.up.ce.PropertyPath
+import io.vertx.up.hors.ArgumentsException
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.memberProperties
 
@@ -21,7 +22,7 @@ open class DatumPaquet(private val outer: DatumPaquet? = null) : DatumKeys() {
     private fun name(): String = prefix() + group()
     private fun prefix() = outer()?.name()?.let { it + "." } ?: ""
     private fun group() = javaClass.kotlin.simpleName?.substringBefore("$") ?:
-            throw IllegalArgumentException("[Env] Cannot determine name of property paquet(group)")
+            throw ArgumentsException("[Env] Cannot determine name of property paquet(group)")
 
     fun <T> key(name: String, type: (PropertyPath, String) -> T): Key<T> {
         return key((name() + "." + name).replace('_', '-'), type)
