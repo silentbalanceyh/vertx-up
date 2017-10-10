@@ -22,7 +22,7 @@ data class Key<out T>(val name: String, val parse: (PropertyPath, String) -> T) 
 
     fun getOrNullBy(lookup: (String) -> Pair<PropertyPath, String?>): T? {
         val (location, value) = lookup(name)
-        
+
         return value?.let { parse(location, value) }
     }
 }

@@ -1,4 +1,4 @@
-package io.vertx.up.resource
+package io.vertx.up.env
 
 import io.vertx.up.ce.Key
 import io.vertx.up.ce.Path
@@ -23,9 +23,18 @@ interface Inceptor {
 }
 
 /**
- * Parent class for configuration
+ * Message for debugging
  */
-abstract class LocatedInceptor : Inceptor {
+val List<PropertyPath>.description: String
+    get() = map { " - ${it.description}" }.joinToString(separator = "\n", postfix = "\n")
+
+fun Inceptor.missingKey(key: Key<*>) =
+        "${key.name} property missing; searched: \n${search(key).description}"
+
+/**
+ * Abstract parent class for configuration
+ */
+abstract class BaseInceptor : Inceptor {
 
     abstract val path: Path
 
@@ -33,3 +42,4 @@ abstract class LocatedInceptor : Inceptor {
 
     protected fun location(key: Key<*>) = PropertyPath(key, path, key.name)
 }
+
