@@ -8,7 +8,7 @@ abstract class VertxUpException(message: String) :
     // Set the message content for getMessage
     override val message = message
 
-    fun getErrorMessage(): String {
+    open fun getErrorMessage(): String {
         return this.message
     }
 }

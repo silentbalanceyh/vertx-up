@@ -21,3 +21,15 @@ interface Inceptor {
 
     fun list(): List<Pair<Path, Map<String, String>>>
 }
+
+/**
+ * Parent class for configuration
+ */
+abstract class LocatedInceptor : Inceptor {
+
+    abstract val path: Path
+
+    override fun search(key: Key<*>): List<PropertyPath> = listOf(location(key))
+
+    protected fun location(key: Key<*>) = PropertyPath(key, path, key.name)
+}
