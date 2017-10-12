@@ -1,4 +1,4 @@
-package io.vertx.up.log
+package io.vertx.up.util
 
 import io.vertx.core.logging.Logger
 import io.vertx.core.logging.LoggerFactory

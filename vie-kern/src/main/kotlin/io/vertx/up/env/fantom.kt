@@ -3,6 +3,7 @@ package io.vertx.up.env
 import io.vertx.up.ce.Key
 import io.vertx.up.ce.Path
 import io.vertx.up.ce.PropertyPath
+import io.vertx.up.cv.Un
 import io.vertx.up.hors.MissingKeyException
 
 /**
@@ -29,10 +30,10 @@ interface Datum {
      * Message for debugging, defined for Inceptor
      */
     val List<PropertyPath>.description: String
-        get() = map { " - ${it.description}" }.joinToString(separator = "\n", postfix = "\n")
+        get() = map { " - ${it.description}" }.joinToString(separator = Un.NEW_LINE, postfix = Un.NEW_LINE)
 
     fun Datum.missingKey(key: Key<*>) =
-            "[Env] ${key.name} property missing; searched: \n${search(key).description}"
+            "[Env] ${key.name} property missing; searched: ${Un.NEW_LINE}${search(key).description}"
 }
 
 /**
