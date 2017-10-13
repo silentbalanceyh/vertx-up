@@ -1,3 +1,5 @@
+@file: JvmName("VertxUp")
+
 package io.vertx.up.hors
 
 /**
@@ -6,7 +8,7 @@ package io.vertx.up.hors
 abstract class VertxUpException(message: String) :
         Exception() {
     // Set the message content for getMessage
-    override val message = message
+    override val message = "[Vx UP] ${message}"
 
     open fun getErrorMessage(): String {
         return this.message
@@ -18,5 +20,9 @@ abstract class VertxUpException(message: String) :
  */
 abstract class VertxUpRunException(message: String,
                                    cause: VertxUpException? = null) :
-        RuntimeException(message, cause) {
+        RuntimeException("[Vx Run] ${message}", cause) {
+
+    open fun to(): VertxUpException {
+        return this.cause as VertxUpException
+    }
 }

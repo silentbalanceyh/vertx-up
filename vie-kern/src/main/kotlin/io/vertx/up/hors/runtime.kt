@@ -1,3 +1,3 @@
 package io.vertx.up.hors
 
-class ArgumentsException(message: String) : IllegalArgumentException(message)
+class ArgumentsException(message: String, cause: VertxUpException? = null) : VertxUpRunException(message, cause)
