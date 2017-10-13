@@ -5,14 +5,15 @@ package io.vertx.up.hors
 /**
  * Checked Exception
  */
-abstract class VertxUpException(message: String) :
+abstract class VertxUpException(message: String,
+                                cause: Throwable? = null) :
         Exception() {
     // Set the message content for getMessage
     override val message = "[Vx UP] ${message}"
 
-    open fun getErrorMessage(): String {
-        return this.message
-    }
+    open fun message(): String = this.message
+
+    open fun to(): Throwable = cause as Throwable
 }
 
 /**
@@ -22,7 +23,5 @@ abstract class VertxUpRunException(message: String,
                                    cause: VertxUpException? = null) :
         RuntimeException("[Vx Run] ${message}", cause) {
 
-    open fun to(): VertxUpException {
-        return this.cause as VertxUpException
-    }
+    open fun to(): VertxUpException = this.cause as VertxUpException
 }
